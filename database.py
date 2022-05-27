@@ -11,7 +11,7 @@ class LegExercise(Base):
 
     __tablename__ ="LegExercise"
     id =Column(Integer, primary_key=True)
-    count= Column(Integer)
+    counter= Column(Integer)
     user_id = Column(Integer,default=1)
     date=Column(Date, index=True, default=date.today)
 
@@ -19,7 +19,7 @@ class ArmExercise(Base):
     
     __tablename__ ="ArmExercise"
     id =Column(Integer, primary_key=True)
-    count= Column(Integer)
+    counter= Column(Integer)
     user_id = Column(Integer,default=1)
     date=Column(Date, index=True, default=date.today)
 
@@ -27,7 +27,7 @@ class KneeExercise(Base):
     
     __tablename__ ="KneeExercise"
     id =Column(Integer, primary_key=True)
-    count= Column(Integer)
+    counter= Column(Integer)
     user_id = Column(Integer,default=1)
     date=Column(Date, index=True, default=date.today)
 

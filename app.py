@@ -16,18 +16,19 @@ def opendb():
 @app.route('/')
 def index():
     db = opendb()
-    try:
-        arms = db.query(ArmExercise).first()
-    except:
-        db.add(ArmExercise(count=0))
-    try:
-        legs = db.query(LegExercise).first()
-    except:
-        db.add(LegExercise(count=0))
-    try:
-        knees = db.query(KneeExercise).first()
-    except:
-        db.add(KneeExercise(count=0))
+    if not db.query(ArmExercise).filter(ArmExercise.user_id == 1).first():
+        db.add(ArmExercise(counter=0))
+    else:
+        print("Arm exercise already exists")
+    if not db.query(LegExercise).filter(LegExercise.user_id == 1).first():
+        db.add(LegExercise(counter=0))
+    else:
+        print("Leg exercise already exists")
+    if not db.query(KneeExercise).filter(KneeExercise.user_id == 1).first():
+        db.add(KneeExercise(counter=0))
+    else:
+        print("Knee exercise already exists")
+
     db.commit()
     db.close()
     return render_template('index.html')
@@ -35,9 +36,9 @@ def index():
 @app.route('/dashboard')
 def dashboard():
     db = opendb()
-    armExerciseData = db.query(ArmExercise).all()
-    legExerciseData = db.query(LegExercise).all()
-    kneeExerciseData = db.query(KneeExercise).all()
+    armExerciseData = db.query(ArmExercise).all()[-1]
+    legExerciseData = db.query(LegExercise).all()[-1]
+    kneeExerciseData = db.query(KneeExercise).all()[-1]
     db.close()
     return render_template('dashboard.html', arms= armExerciseData, leg = legExerciseData, knee = kneeExerciseData)
 

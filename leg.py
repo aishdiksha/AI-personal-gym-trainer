@@ -78,7 +78,7 @@ def start_leg_excercise(campos=0):
                     db = opendb()
                     entry = db.query(LegExercise).filter(LegExercise.user_id == 1).first()
                     if entry:
-                        entry.count=counter
+                        entry.counter=counter
                         print('updated')
                     db.commit()
                     db.close()

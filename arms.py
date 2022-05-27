@@ -74,7 +74,7 @@ def start_arm_excercise(campos=0):
                     db = opendb()
                     entry = db.query(ArmExercise).filter(ArmExercise.user_id == 1).first()
                     if entry:
-                        entry.count=counter
+                        entry.counter=counter
                         print('updated')
                     db.commit()
                     db.close()
