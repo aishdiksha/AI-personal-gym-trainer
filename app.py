@@ -16,9 +16,18 @@ def opendb():
 @app.route('/')
 def index():
     db = opendb()
-    db.add(ArmExercise(count=0))
-    db.add(LegExercise(count=0))
-    db.add(KneeExercise(count=0))
+    try:
+        arms = db.query(ArmExercise).first()
+    except:
+        db.add(ArmExercise(count=0))
+    try:
+        legs = db.query(LegExercise).first()
+    except:
+        db.add(LegExercise(count=0))
+    try:
+        knees = db.query(KneeExercise).first()
+    except:
+        db.add(KneeExercise(count=0))
     db.commit()
     db.close()
     return render_template('index.html')
